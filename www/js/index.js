@@ -67,7 +67,8 @@ var app = {
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
         var myButton = document.getElementById("btnClick");
-        myButton.addEventListener("click", scanCode, false);
+        myButton.addEventListener("click", clicked, false);
+        // myButton.addEventListener("click", scanCode, false);
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
