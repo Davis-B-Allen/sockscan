@@ -114,4 +114,8 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
+    <!-- add a version here, otherwise PGB will use whatever the latest version of the package on npm is -->
+    <plugin name="phonegap-plugin-barcodescanner">
+      <param name="CAMERA_USAGE_DESCRIPTION" value="To scan barcodes." />
+    </plugin>
 </widget>

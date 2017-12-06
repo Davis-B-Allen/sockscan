@@ -16,6 +16,38 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+function clicked() {
+  alert("You clicked a button.");
+}
+
+function scanCode() {
+  cordova.plugins.barcodeScanner.scan(
+    function (result) {
+        alert("We got a barcode\n" +
+              "Result: " + result.text + "\n" +
+              "Format: " + result.format + "\n" +
+              "Cancelled: " + result.cancelled);
+    },
+    function (error) {
+      alert("Scanning failed: " + error);
+    },
+    {
+      preferFrontCamera : false, // iOS and Android
+      showFlipCameraButton : true, // iOS and Android
+      showTorchButton : true, // iOS and Android
+      torchOn: true, // Android, launch with the torch switched on (if available)
+      saveHistory: true, // Android, save scan history (default false)
+      prompt : "Place a barcode inside the scan area", // Android
+      resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
+      formats : "QR_CODE,PDF_417,UPC_A", // default: all but PDF_417 and RSS_EXPANDED
+      orientation : "portrait", // Android only (portrait|landscape), default unset so it rotates with the device
+      disableAnimations : true, // iOS
+      disableSuccessBeep: false // iOS and Android
+    }
+  );
+}
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -34,6 +66,8 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+        var myButton = document.getElementById("btnClick");
+        myButton.addEventListener("click", scanCode, false);
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
