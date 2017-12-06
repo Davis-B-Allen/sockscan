@@ -1,0 +1,6 @@
+platforms/
+plugins/
+hooks/
+
+# Mac
+.DS_Store
